@@ -1,0 +1,16 @@
+1. pwd for checking current working directory, hidden files ls -al and for file size ls -lSh or ls -lS
+2. folder created by mkdir command.
+3.file created in intern-2020 by touch command
+4.for writing i used nano command in dev.txt file, and in helloworld.txt i used nano command
+   and write the helloworld with echo command, echo "he" > filename.txt and check by cat filename.
+5.cp file pathname1 filepathname2 and then directory name
+6. mv command to change the file name.
+7.in dev2.txt read and write permission given we give u-w chmod commandfor only read and for helloworld2.txt, chmod 760 filename.
+8. tar -cvf sarang.tar created and mv for moving in another directory.
+9. mv for removing and copying.
+10. find -name "filename" for finding path
+11.df -h  for cpu, memory usage
+12. free -h or free -b for space which are used and available
+13.top for system process and filter out is press i.
+14. wget command with url name for taking content from server
+15.ifconfig or netstat

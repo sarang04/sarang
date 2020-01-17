@@ -1,0 +1,144 @@
+Lab Assignment 2
+
+Answers
+
+    1. 
+#!/bin/bash
+
+echo "Question 1"
+
+for i in *
+do
+ if [ -f $i ]
+ then
+ mv $i $i.new
+ fi
+done
+echo “Check the file extensions: ”
+ls
+
+    2. 
+        #!/bin/bash
+for i in *
+do
+	for (( j=0; j<${#i}; j++ )); do
+  #echo "${i:$j:1}"
+	case ${i:$j:1} in
+	[-_*$] )
+	rm -rf $i
+	echo "deleted";;
+	* )
+	;;
+	esac
+  done < $i
+done
+
+
+    3. 
+#!/bin/bash
+
+read -p "Enter First Number: " num1
+read -p "Enter Second Number: " num2
+
+echo "Arithmetic Operations:"
+echo -e "Addition Operator: \c" ; echo "$num1 + $num2 "  | bc -l
+echo -e "Subtraction Operator:\c" ; echo "$num1 - $num2"  | bc -l
+echo -e "Multiplication Operator:\c"; echo "$num1 * $num2"  | bc -l
+echo -e "Divison Operator:\c";echo "scale=2 ;$num1 / $num2"  | bc -l
+echo -e "Modulo Operator:\c "; echo " $num1 % $num2"  | bc -l
+
+echo "Relational Operations:"
+[[ $num1 -gt $num2  ]] && echo -e "Max is $num1 \nMin is $num2" || echo -e "Max is $num2 \nMin is $n$
+[[ $num1 -ge 0 ]]  && echo "$num1 is positive" || echo "$num1 is Negative"
+[[ $num2 -ge 0 ]]  && echo "$num2 is positive" || echo "$num2 is Negative"
+
+
+    4. 
+!/bin/bash
+
+read -p "Enter the value of n:" n
+echo "For loop:"
+for(( i = 1 ; i <= $n ; i++ ))
+do
+echo -e $i "\c"
+done
+echo
+
+echo "While Loop:"
+temp=1
+
+while [ $temp -le $n ]
+do 
+echo -e "$temp \c"
+(( ++temp)) 
+done
+echo
+
+echo "Until Loop:"
+temp2=1
+
+until [ $temp2 -ge $n ]
+do 
+echo -e "$temp2  \c"
+(( temp2++ ))
+done
+echo
+
+    5. 
+#!/bin/bash
+
+echo -e "Last moditfied file would be :\c"
+ls -t | head -n 1
+
+
+    6. 
+#!/bin/bash
+
+echo -e "Total number of total lines are: \c"
+grep -iR 'Linux' --include=*.txt .. | wc -l 
+
+
+    7. 
+#!/bin/bash
+
+cp -r * ../lab-assign-2/ ../new-dir/
+
+
+    8. 
+#!/bin/bash
+
+echo "(i)"
+echo -e "First 10 lines are:\n"
+head -n 10 blender.txt
+
+echo -e "\n Last 10 lines are:\n"
+tail -n 10 blender.txt
+
+echo -e "\nlines from 3 to 8 are:"
+awk '{if(NR>=3 && NR<=9) print $0}' blender.txt
+
+echo -e "\n 7 lines starting from the bottom in reverse are:"
+tac blender.txt | sed -n 2,8p
+
+    9. 
+(i). Add two new users and two groups
+		useradd username;
+		useradd username;
+		
+		groupadd groupname;
+		groupadd groupname;
+	(ii). Login as one user and then create new file
+		
+		touch abc.txt
+	
+	(iii). Send created file from one user to another user
+		
+		sudo cp abc.txt /home/username 
+	(iv). Login as second user and copy that file from user2 to user1(in same system) 
+		
+		sudo cp abc.txt /home/username
+
+10.
+/bin/bash
+
+grep -iR 'abc' --include=* ..
