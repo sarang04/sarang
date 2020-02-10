@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Table</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+  
+    .add{
+        background-color:blue;
+    }
+    .edit{
+        background-color: blueviolet;
+    }
+    .delete{
+        background-color: brown;
+    }
+    .save{
+    background-color:darkgoldenrod ;
+    }
+    .addd{
+    background-color: yellow;
+    }
+    #new_last{
+        height: 50px;
+    }
+    #new_name{
+        height: 50px;
+    }
+
+
+    </style>
+</head>
+<body>
+      <div class="container"></div>
+        <div style="text-align: center;" id="wrapper">
+        <div style="margin-top: 20px;"> 
+            <table class="table table-dark table-hover" cellspacing=2 cellpadding=5 id="data_table">
+        <tr>
+    
+        <td><input type="text" placeholder="First Name" id="new_name"></td>
+        <td><input type="text" placeholder="Last Name" id="new_last"></td>
+        <td><input type="button" class="add btn-lg" onclick="add_row();" value="Add Row"></td>
+        <td><input type="button" class="addd btn-lg" onclick="add_static();" value="Render"></td>
+        
+        </tr>
+        
+        </table>
+        </div></div>  </div>      
+
+
+<script>
+    
+    let obj = [
+    {
+        firstname:"Rahul",
+        lastname:"Verma"
+    },
+    {
+        firstname:"Vikas",
+        lastname:"Jadon"
+    },
+    {
+        firstname:"Omendra",
+        lastname:"Pratap"
+    },
+    {
+        firstname:"Nitranjan",
+        lastname:"Gandhi"
+    },
+    {
+        firstname:"Chirag",
+        lastname:"Jain"
+    },
+    {
+        firstname:"Pradeep",
+        lastname:"Sutariya"
+    },
+    {
+        firstname:"Vamil",
+        lastname:"Joshi"
+    },
+    {
+        firstname:"Deepika",
+        lastname:"Padukone"
+    },
+    {
+        firstname:"Pooja",
+        lastname:"Sharma"
+    },
+    {
+        firstname:"Dhiraj",
+        lastname:"Suthar"
+    },
+]
+
+function add_static(){
+    for(i=0;i<obj.length;i++)
+    {
+        let new_name=obj[i].firstname;
+        let new_last=obj[i].lastname;
+                
+            let table=document.getElementById("data_table");
+            let table_len=(table.rows.length)-0;
+            let row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td id='last_row"+table_len+"'>"+new_last+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Update' class='save' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
+
+            document.getElementById("new_name").value="";
+            document.getElementById("new_last").value="";
+
+    }
+
+}
+
+
+    function edit_row(no)
+            {
+            document.getElementById("edit_button"+no).style.display="none";
+            document.getElementById("save_button"+no).style.display="block";
+                
+            let name=document.getElementById("name_row"+no);
+            let last=document.getElementById("last_row"+no);
+                
+            let name_data=name.innerHTML;
+            let last_data=last.innerHTML;
+                
+            name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
+            last.innerHTML="<input type='text' id='last_text"+no+"' value='"+last_data+"'>";
+            }
+
+            
+    function save_row(no)
+            
+            {
+            let name_val=document.getElementById("name_text"+no).value;
+            let last_val=document.getElementById("last_text"+no).value;
+
+            document.getElementById("name_row"+no).innerHTML=name_val;
+            document.getElementById("last_row"+no).innerHTML=last_val;
+
+            document.getElementById("edit_button"+no).style.display="block";
+            document.getElementById("save_button"+no).style.display="none";
+            }
+
+    
+    function delete_row(no)
+            {
+            document.getElementById("row"+no+"").outerHTML="";
+            }
+
+            
+    function add_row()
+            {
+            let new_name=document.getElementById("new_name").value;
+            let new_last=document.getElementById("new_last").value;
+                
+            let table=document.getElementById("data_table");
+            let table_len=(table.rows.length)-0;
+            let row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td id='last_row"+table_len+"'>"+new_last+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Update' class='save' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
+
+            document.getElementById("new_name").value="";
+            document.getElementById("new_last").value="";           
+            }
+    
+    </script>
+</body>
+
+</html>

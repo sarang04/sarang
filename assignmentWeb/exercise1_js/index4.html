@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Time Date stopwatch</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script
+        src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"
+        data-search-pseudo-elements
+      ></script>
+      <style>
+      h1{
+          display: inline;
+      }
+      
+      </style>
+    </head>
+
+    <body>
+
+
+            <!--Time and Date-->
+        
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="text-align: center; margin-top: 20px;">
+            <h1 style="font-weight: bold;">Time&nbsp;</h1>
+        <h1 id="time"></h1>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+         <h1 style="font-weight: bold;">Date&nbsp;</h1>
+            <h1 id="date"></h1>
+     </div>   
+        </div>
+            <!--Stopwatch-->
+     <div style="text-align: center;">
+         <div id="stopwatch"></div>
+
+    <div style="text-align: center;">
+        <button onclick="start()" class="btn btn-primary bts" id="star"> Start</button>
+        <button onclick="stop()" class="btn btn-danger bts">Stop</button>
+        <button onclick="start()" class="btn btn-primary  bts"id="res">Resume</button>
+        <button onclick="reset()"class="btn btn-primary bts">Reset</button>
+    </div>
+  
+
+<script>
+     let hour=0;
+          let minute=0;
+          let second=0;
+          let milisecond=0;
+          let timerid;
+          let h,m,s,ms;
+          
+    let months=["january","february","march","april","may","june","july",
+                    "august","september","october","november","december"]
+    
+    setInterval(datetime,1);
+            
+            function datetime()
+        {
+
+            let d=new Date();
+            document.getElementById("date").innerHTML =d.getDate()+": ";
+            document.getElementById("date").innerHTML += months[d.getMonth()]+": ";
+            document.getElementById("date").innerHTML += d.getFullYear()+" ";
+            document.getElementById("time").innerHTML = d.getHours()+"h ";
+            document.getElementById("time").innerHTML += d.getMinutes()+"m ";
+            document.getElementById("time").innerHTML += d.getSeconds()+"s ";
+            }
+
+                datetime();
+                document.getElementById("res").disabled=true;
+                document.getElementById("stopwatch").innerHTML=`STOPWATCH:&nbsp &nbsp00:00:00:00`;
+                            milisecond+=1;
+         
+         
+          //stopwatch functions
+          function start(){
+              document.getElementById("star").disabled=true;
+              document.getElementById("res").disabled=true;
+              s=check(second);
+              m=check(minute);
+              h=check(hour);
+              ms=check(milisecond);
+
+              document.getElementById("stopwatch").innerHTML=`Stopwatch:&nbsp &nbsp${h}:${m}:${s}:${ms}`;
+              milisecond+=1;
+              if(milisecond==100){second=second+1;
+              milisecond=0;}
+
+              else if(second==60){minute=minute+1;second=0;}
+
+              else if(minute==60 && second==59){hour=hour+1;
+              minute=0;}
+
+              timerid=setTimeout(start,10);
+          }       
+          function check(i){
+              if(i<10){i="0"+i;}
+              return i;
+          }
+          function stop(){
+                document.getElementById("res").disabled=false;
+                document.getElementById("star").disabled=true;
+              clearTimeout(timerid);
+          }
+          function reset(){
+            document.getElementById("star").disabled=false;
+            document.getElementById("res").disabled=true;
+              clearTimeout(timerid);
+              second=0;
+              minute=0;
+              hour=0;
+              milisecond=0;
+              document.getElementById("stopwatch").innerHTML=`Stopwatch:&nbsp &nbsp00:00:00:00`;
+
+                
+          }
+
+
+</script>
+    </body>
+</html>
