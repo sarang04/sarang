@@ -1,0 +1,27 @@
+    .add{
+        background-color:blue;
+    }
+
+    .edit{
+        background-color: blueviolet;
+    }
+
+    .delete{
+        background-color: brown;
+    }
+
+    .save{
+    background-color:darkgoldenrod ;
+    }
+
+    .addd{
+    background-color: yellow;
+    }
+
+    #new_last{
+        height: 50px;
+    }
+    
+    #new_name{
+        height: 50px;
+    }
