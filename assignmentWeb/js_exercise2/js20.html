@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let arr = [{Id: 1, Name:'abc', Age:25, hobbies: [ 'reading', 'travelling', 'music' ]}, {Id: 2, Name:'xyz', Age:23, hobbies: [ 'reading', 'drawing', 'music' ]}];
+    let i;
+    let arr2=new Array();
+    let hobby=new Set();
+    for(i=0;i<arr.length;i++)
+    {
+        for(j=0;j<arr[i].hobbies.length;j++)
+        {
+            arr2=arr[i].hobbies;
+            hobby.add(arr2[j]);
+        }
+    }
+    let arr3=new Array();
+    hobby.forEach(h => {
+        console.log(`${h}: `);
+        for(i=0;i<arr.length;i++)
+        {
+            for(j=0;j<arr[i].hobbies.length;j++)
+            {
+                let arr2=arr[i].hobbies;
+                if(arr2[j]==h){
+                    arr3.push(arr[i].Name);
+                    break;
+                }
+            }
+        }
+        console.log(arr3);
+        arr3=[];
+    });
+    </script>
+</body>
+</html>

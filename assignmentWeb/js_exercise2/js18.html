@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr=new Array();
+        let i;
+        arr = [{id: 1, name: "Jaymin", age:29}, {id:2, name: "Mitesh", age:23}, {id:3, name: "Raj", age:21}, {id:4, name: "Shah", age:25}, {id:5, name: "Chauhan", age:27}
+        , {id:6, name: "Kurian", age:28}, {id:7, name: "Nanda", age:26}, {id:8, name: "Kishore", age:24}, {id:9, name: "Gujar", age:22}, {id:10, name: "Singh", age:20}];
+        let arr2=Array.from(arr);
+        age = () => {
+            arr.sort((a, b) => a.age - b.age);
+            console.log(arr);
+        }
+        names = () => {
+            arr2.sort((a, b) => b.name.localeCompare(a.name));
+            console.log(arr2);
+        }
+        age();
+        names();
+    </script>
+</body>
+</html>
